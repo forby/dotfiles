@@ -31,6 +31,7 @@ apps=(
   jq
   lynx
   mackup
+  mysql
   nano
   pandoc
   peco
@@ -41,7 +42,6 @@ apps=(
   tree
   unar
   wget
-  wifi-password
 )
 
 brew install "${apps[@]}"
