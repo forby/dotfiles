@@ -5,8 +5,8 @@ dockutil --no-restart --add "/Applications/App Store.app"
 dockutil --no-restart --add "/Applications/System Preferences.app"
 dockutil --no-restart --add "/Applications/Google Chrome.app"
 
-# Divider
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+# Spacer
+# defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
 # Downloads Folder
 dockutil --no-restart --add "~/Downloads"
