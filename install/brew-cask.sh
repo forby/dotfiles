@@ -20,10 +20,12 @@ apps=(
   hammerspoon
   iterm2
   macdown
+  sequel-pro
+  sketch
   slack
   sourcetree
   spotify
-  transmit
+  transmit4
   virtualbox
   visual-studio-code
   vlc
