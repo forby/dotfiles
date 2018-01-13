@@ -6,6 +6,7 @@ fi
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew tap Goles/battery
+brew tap homebrew/php
 brew update
 brew upgrade
 
@@ -16,6 +17,7 @@ apps=(
   bats
   battery
   coreutils
+  composer
   diff-so-fancy
   dockutil
   ffmpeg
@@ -42,6 +44,7 @@ apps=(
   tree
   unar
   wget
+  yarn
 )
 
 brew install "${apps[@]}"
