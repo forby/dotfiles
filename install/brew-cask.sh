@@ -24,6 +24,7 @@ apps=(
   sketch
   slack
   sourcetree
+  spectacle
   spotify
   transmit4
   virtualbox
