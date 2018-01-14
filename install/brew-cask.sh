@@ -15,6 +15,7 @@ apps=(
   dashlane
   dropbox
   firefox
+  fontbase
   font-fira-code
   google-chrome
   hammerspoon
