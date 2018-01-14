@@ -11,6 +11,7 @@ brew tap caskroom/fonts
 
 apps=(
   appcleaner
+  blender
   keepingyouawake
   dashlane
   dropbox
