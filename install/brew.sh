@@ -37,6 +37,8 @@ apps=(
   nano
   pandoc
   peco
+  php71
+  php71-mcrypt
   psgrep
   python
   shellcheck
