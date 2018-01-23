@@ -39,6 +39,7 @@ apps=(
   peco
   php71
   php71-mcrypt
+  php71-imagick
   psgrep
   python
   shellcheck
