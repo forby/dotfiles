@@ -243,6 +243,10 @@ defaults write com.apple.dock showhidden -bool true
 # No bouncing icons
 defaults write com.apple.dock no-bouncing -bool true
 
+# Position Dock on the left
+# Options (left, bottom, right)
+defaults write com.apple.dock orientation -string "left"
+
 ###############################################################################
 # Dashboard                                                                   #
 ###############################################################################
