@@ -30,6 +30,7 @@ apps=(
   hub
   httpie
   imagemagick
+  jpegoptim
   jq
   lynx
   mackup
