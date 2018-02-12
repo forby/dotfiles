@@ -36,6 +36,7 @@ apps=(
   mackup
   mysql
   nano
+  optipng
   pandoc
   peco
   php71
