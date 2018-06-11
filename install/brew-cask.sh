@@ -18,6 +18,7 @@ apps=(
   firefox
   fontbase
   font-fira-code
+  github
   google-chrome
   hammerspoon
   iterm2
