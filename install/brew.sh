@@ -34,14 +34,13 @@ apps=(
   jq
   lynx
   mackup
+  mcrypt
   mysql
   nano
   optipng
   pandoc
   peco
-  php71
-  php71-mcrypt
-  php71-imagick
+  php@7.1
   psgrep
   python
   shellcheck
