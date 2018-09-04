@@ -49,6 +49,7 @@ apps=(
   unar
   wget
   yarn
+  zsh
 )
 
 brew install "${apps[@]}"
