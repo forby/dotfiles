@@ -2,25 +2,18 @@
 
 These are my dotfiles. Take anything you want, but at your own risk.
 
-It targets macOS systems, but it should work on *nix as well (tested on a few Linux boxes and Ubuntu 16).
+It targets macOS systems, but it should work on \*nix as well (with `apt-get`).
 
 ## Package overview
 
-* Core
-  * Bash + [coreutils](https://en.wikipedia.org/wiki/GNU_Core_Utilities) + bash-completion
-  * [Homebrew](https://brew.sh) + [homebrew-cask](https://caskroom.github.io)
-  * Node.js + npm
-  * GNU [sed](https://www.gnu.org/software/sed/), [grep](https://www.gnu.org/software/grep/), [Wget](https://www.gnu.org/software/wget/)
-  * [fasd](https://github.com/clvv/fasd), [psgrep](https://github.com/jvz/psgrep/blob/master/psgrep), [pgrep](https://linux.die.net/man/1/pgrep), [spot](https://github.com/guille/spot), [tree](http://mama.indstate.edu/users/ice/tree/), [gtop](https://github.com/aksakalli/gtop)
-  * Git + [SourceTree](https://www.sourcetreeapp.com) + [hub](https://hub.github.com)
-  * [unar](https://theunarchiver.com/command-line)
-  * [rvm](https://rvm.io) (Ruby 2.1), [lunchy](https://github.com/eddiezane/lunchy)
-  * Python 2
-  * `$EDITOR` and Git editor is [GNU nano](https://www.nano-editor.org)
-* Development (Node/JS/JSON): [jq](https://stedolan.github.io/jq), [nodemon](https://nodemon.io), [peco](https://peco.github.io), [superstatic](https://github.com/firebase/superstatic), [underscore-cli](https://github.com/ddopson/underscore-cli)
-* Graphics: [ffmpeg](https://www.ffmpeg.org), [gifsicle](https://www.lcdf.org/gifsicle), [imagemagick](https://www.imagemagick.org), [svgo](https://github.com/svg/svgo)
-* macOS: [dockutil](https://github.com/kcrawford/dockutil), [Hammerspoon](https://www.hammerspoon.org), [Mackup](https://github.com/lra/mackup), [Quick Look plugins](https://github.com/sindresorhus/quick-look-plugins)
-* [macOS apps](https://github.com/webpro/dotfiles/blob/master/install/brew-cask.sh)
+- [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
+- [homebrew-cask](https://caskroom.github.io) (packages: [Caskfile](./install/Caskfile))
+- [Node.js + npm LTS](https://nodejs.org/en/download/) (packages: [npmfile](./install/npmfile))
+- Latest Ruby (packages: [Gemfile](./install/Gemfile))
+- Latest Git, Bash 4, Python 3, GNU coreutils, curl
+- [Hammerspoon](https://www.hammerspoon.org) (config: [keybindings & window management](./config/hammerspoon))
+- [Mackup](https://github.com/lra/mackup) (sync application settings)
+- `$EDITOR` (and Git editor) is [GNU nano](https://www.nano-editor.org)
 
 ## Install
 
@@ -29,28 +22,34 @@ On a sparkling fresh installation of macOS:
     sudo softwareupdate -i -a
     xcode-select --install
 
-Install the dotfiles with either Git or curl:
+The Xcode Command Line Tools includes `git` and `make` (not available on stock macOS).
+Then, install this repo with `curl` available:
 
-### Clone with Git
+    bash -c "`curl -fsSL https://raw.githubusercontent.com/webpro/dotfiles/master/remote-install.sh`"
+
+This will clone (using `git`), or download (using `curl` or `wget`), this repo to `~/.dotfiles`. Alternatively, clone manually into the desired location:
 
     git clone https://github.com/webpro/dotfiles.git ~/.dotfiles
-    source ~/.dotfiles/install.sh
 
-### Remotely install using curl
+Use the [Makefile](./Makefile) to install everything [listed above](#package-overview), and symlink [runcom](./runcom) and [config](./config) (using [stow](https://www.gnu.org/software/stow/)):
 
-Alternatively, you can install this into `~/.dotfiles` remotely without Git using curl:
+    cd ~/.dotfiles
+    make
 
-    bash -c "`curl -fsSL https://raw.github.com/webpro/dotfiles/master/remote-install.sh`"
+## Post-install
 
-Or, using wget:
-
-    bash -c "`wget -O - --no-check-certificate https://raw.githubusercontent.com/webpro/dotfiles/master/remote-install.sh`"
+* `dotfiles dock` (set [Dock items](./macos/dock.sh))
+* `dotfiles macos` (set [macOS defaults](./macos/defaults.sh))
+* Mackup
+	* Log in to Dropbox
+	* `mackup restore`
+	* `ln -s ~/.config/mackup/.mackup.cfg ~` (until [#632](https://github.com/lra/mackup/pull/632) is fixed)
 
 ## The `dotfiles` command
 
     $ dotfiles help
     Usage: dotfiles <command>
-    
+
     Commands:
        clean            Clean up caches (brew, npm, gem, rvm)
        dock             Apply macOS Dock settings
@@ -64,18 +63,15 @@ Or, using wget:
 
 You can put your custom settings, such as Git credentials in the `system/.custom` file which will be sourced from `.bash_profile` automatically. This file is in `.gitignore`.
 
-Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`.
-
-* The runcom `.bash_profile` sources all `~/.extra/runcom/*.sh` files.
-* The installer (`install.sh`) will run `~/.extra/install.sh`.
+Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`. The runcom `.bash_profile` sources all `~/.extra/runcom/*.sh` files.
 
 ## Additional resources
 
-* [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
-* [Homebrew](https://brew.sh)
-* [homebrew-cask](https://caskroom.github.io) / [usage](https://github.com/phinze/homebrew-cask/blob/master/USAGE.md)
-* [Bash prompt](https://wiki.archlinux.org/index.php/Color_Bash_Prompt)
-* [Solarized Color Theme for GNU ls](https://github.com/seebi/dircolors-solarized)
+- [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
+- [Homebrew](https://brew.sh)
+- [Homebrew Cask](http://caskroom.io)
+- [Bash prompt](https://wiki.archlinux.org/index.php/Color_Bash_Prompt)
+- [Solarized Color Theme for GNU ls](https://github.com/seebi/dircolors-solarized)
 
 ## Credits
 

@@ -4,7 +4,7 @@
 
 # Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
 
-READLINK=$(which greadlink || which readlink)
+READLINK=$(which greadlink 2>/dev/null || which readlink)
 CURRENT_SCRIPT=$BASH_SOURCE
 
 if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
@@ -21,26 +21,21 @@ fi
 
 PATH="$DOTFILES_DIR/bin:$PATH"
 
-# Read cache
+# Source the dotfiles (order matters)
 
-DOTFILES_CACHE="$DOTFILES_DIR/.cache.sh"
-[ -f "$DOTFILES_CACHE" ] && . "$DOTFILES_CACHE"
-
-# Finally we can source the dotfiles (order matters)
-
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,completion,grep,prompt,nvm,rvm,custom}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,grep,prompt,nvm,completion,custom}; do
   [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
 if is-macos; then
-  for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.macos; do
+  for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function,path}.macos; do
     [ -f "$DOTFILE" ] && . "$DOTFILE"
   done
 fi
 
 # Set LSCOLORS
 
-eval "$(dircolors "$DOTFILES_DIR"/system/.dir_colors)"
+eval "$(dircolors -b "$DOTFILES_DIR"/system/.dir_colors)"
 
 # Hook for extra/custom stuff
 
